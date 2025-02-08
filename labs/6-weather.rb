@@ -30,3 +30,21 @@ weather_data = {
     { temperature: 60, conditions: "Rainy", precipitation: 0.9 }
   ]
 }
+
+current_temp = weather_data[:current][:temperature]
+current_condition = weather_data[:current][:conditions]
+
+puts "Currently it is #{current_temp} degrees and #{current_condition}."
+puts "Forcast for the next 7 days:"
+for day in weather_data[:forecast]
+  future_temp = day[:temperature]
+  future_conditions = day[:conditions]
+  future_rain = (day[:precipitation]*100).to_i
+  if future_conditions == "Rainy"
+    puts "- #{future_temp} degrees and #{future_conditions}"
+  elsif future_rain >50
+    puts "- #{future_temp} degrees and #{future_conditions} with a #{future_rain}% chance of rain"
+  else 
+    puts "- #{future_temp} degrees and #{future_conditions}"
+  end
+end
